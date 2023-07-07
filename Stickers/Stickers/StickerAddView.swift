@@ -11,19 +11,36 @@ struct StickerAddView: View {
     @Binding var isShowingSheet: Bool
     
     @State var selectedColor: Color = .cyan
+    @State var memo: String = ""
     
     let colors: [Color] = [.cyan, .purple, .blue, .yellow, .brown]
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading){
-                Text("Select a color")
-                    .font(.title)
-                HStack {
-                    ForEach(colors, id:\.self) { color in
-                        StickerColorSelectView(selectedColor: $selectedColor, color: color)
+                Group{
+                    Text("Select a color")
+                        .font(.title)
+                    HStack {
+                        ForEach(colors, id:\.self) { color in
+                            StickerColorSelectView(selectedColor: $selectedColor, color: color)
+                        }
                     }
                 }
+                
+                Divider()
+                    .padding()
+                
+                Group {
+                    Text("Write a memo")
+                        .font(.title)
+                    // axis 라는 옵션을 정해쥬면 위아래로 길어지는 메모장 가능하댜
+                    TextField("Memo", text: $memo, axis: .vertical)
+                        .font(.title)
+                }
+                
+                
+                
             }
             .navigationTitle("Add a Sticker!")
             .navigationBarTitleDisplayMode(.inline)

@@ -11,16 +11,17 @@ import SwiftUI
 
 struct StickerView: View {
     var body: some View {
-        VStack{
-            HStack{
+        HStack {
+            VStack(alignment: .leading) {
                 Text("Sticker")
                     .font(.title)
-                Spacer()
+                    .padding()
                 
                 Text("2023-07-07")
                     .font(.footnote)
+                    .padding()
             }
-                .padding()
+            Spacer()
         }
         .background(.yellow)
         .shadow(radius: 6)

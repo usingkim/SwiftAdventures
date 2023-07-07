@@ -43,7 +43,7 @@ struct StickerListView: View {
         }
         // content에는 View 이름
         .sheet(isPresented: $isSheetPresented) {
-            StickerAddView()
+            StickerAddView(isShowingSheet: $isSheetPresented)
         }
         
     }
