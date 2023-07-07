@@ -22,7 +22,7 @@ struct StickerView: View {
             }
                 .padding()
         }
-        .background(.cyan)
+        .background(.yellow)
         .shadow(radius: 6)
         .padding()
     }

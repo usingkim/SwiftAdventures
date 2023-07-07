@@ -13,10 +13,21 @@ struct StickerListView: View {
         VStack{
             List{
                 StickerView()
+                StickerView()
+                StickerView()
+                StickerView()
+                StickerView()
+                StickerView()
             }
-            .listStyle(.plain)
+            
+//            Label("Add", systemImage: "plus.app")
+            Image(systemName: "plus.app")
+                .font(.largeTitle)
+                .padding()
         }
+        .listStyle(.plain)
         .navigationTitle("Stickers")
+        
     }
 }
 
