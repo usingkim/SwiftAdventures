@@ -7,14 +7,23 @@
 
 import SwiftUI
 
+
 struct StickerListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            List{
+                StickerView()
+            }
+            .listStyle(.plain)
+        }
+        .navigationTitle("Stickers")
     }
 }
 
 struct StickerListView_Previews: PreviewProvider {
     static var previews: some View {
-        StickerListView()
+        NavigationStack{
+            StickerListView()
+        }
     }
 }

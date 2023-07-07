@@ -7,15 +7,13 @@
 
 import SwiftUI
 
+// ContentView에 기능을 다 담지 말고 최소한의 기능만 담아보자
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            StickerListView()
         }
-        .padding()
     }
 }
 

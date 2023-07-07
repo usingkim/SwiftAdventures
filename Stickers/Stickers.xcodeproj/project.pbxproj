@@ -12,6 +12,7 @@
 		C46A982F2A578F1200B56BC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C46A982E2A578F1200B56BC3 /* Assets.xcassets */; };
 		C46A98322A578F1200B56BC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C46A98312A578F1200B56BC3 /* Preview Assets.xcassets */; };
 		C46A98392A57904E00B56BC3 /* StickerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A98382A57904E00B56BC3 /* StickerListView.swift */; };
+		C46A983B2A57945F00B56BC3 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A983A2A57945F00B56BC3 /* StickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		C46A982E2A578F1200B56BC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C46A98312A578F1200B56BC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C46A98382A57904E00B56BC3 /* StickerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerListView.swift; sourceTree = "<group>"; };
+		C46A983A2A57945F00B56BC3 /* StickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				C46A982A2A578F1000B56BC3 /* StickersApp.swift */,
 				C46A982C2A578F1000B56BC3 /* ContentView.swift */,
 				C46A98382A57904E00B56BC3 /* StickerListView.swift */,
+				C46A983A2A57945F00B56BC3 /* StickerView.swift */,
 				C46A982E2A578F1200B56BC3 /* Assets.xcassets */,
 				C46A98302A578F1200B56BC3 /* Preview Content */,
 			);
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46A983B2A57945F00B56BC3 /* StickerView.swift in Sources */,
 				C46A982D2A578F1000B56BC3 /* ContentView.swift in Sources */,
 				C46A982B2A578F1000B56BC3 /* StickersApp.swift in Sources */,
 				C46A98392A57904E00B56BC3 /* StickerListView.swift in Sources */,
