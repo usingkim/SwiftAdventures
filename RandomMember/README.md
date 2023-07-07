@@ -1,5 +1,8 @@
 # 07.06 Random Element
 
+<img width="562" alt="image" src="https://github.com/usingkim/APPSCHOOL/assets/55521930/a11c15e1-67c4-4be5-889b-f2dd7577e5a7">
+<img width="562" alt="image" src="https://github.com/usingkim/APPSCHOOL/assets/55521930/c3c34684-d0e6-45d2-b23f-6e732df6b51f">
+
 ## SwiftUI
 
 Text(" ") 대신 Label("") 사용하는 방법
