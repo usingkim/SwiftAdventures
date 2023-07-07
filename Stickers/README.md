@@ -20,6 +20,8 @@ class StickerStore: ObservableObject
 - 다른 친구들아! 관찰좀 해줘! 라고 ObservableObject 사용
 
 date를 dateString으로 변형해서 출력해주기 (Format에 따라)
+    
+    
     var date: Date
     
     var dateString: String {
