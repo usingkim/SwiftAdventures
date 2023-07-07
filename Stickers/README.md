@@ -10,6 +10,10 @@ TextField("Memo", text: $memo, axis: .vertical)
 
 ## Swift 
 
+class StickerStore: ObservableObject {
+    @Published var stickers: [Sticker] = []
+- Observable 이랑 @Published 해줘야 다른 View 파일에서 추적이 가능하다!
+
 @State var isSheetPresented: Bool = false
 - Binding으로 넘기는 Bool, Int 같은 기본값에는 State Property Wrapper를 꼭 달아줘야한다.
 
