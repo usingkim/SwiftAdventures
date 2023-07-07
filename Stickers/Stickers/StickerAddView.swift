@@ -21,25 +21,7 @@ struct StickerAddView: View {
                     .font(.title)
                 HStack {
                     ForEach(colors, id:\.self) { color in
-                        Button {
-                            selectedColor = color
-                        } label: {
-                            ZStack{ // 위에 쌓음
-                                Rectangle()
-                                    .foregroundColor(color)
-                                    .frame(height: 50)
-                                    .shadow(radius: 6)
-                                // 보여줄지 말지로
-                                if selectedColor == color {
-                                    Image(systemName: "checkmark")
-                                        .font(.largeTitle)
-                                        .foregroundColor(.white)
-                                }
-                            }
-                            
-                            
-                            
-                        }
+                        StickerColorSelectView(selectedColor: $selectedColor, color: color)
                     }
                 }
             }
