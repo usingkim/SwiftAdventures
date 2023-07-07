@@ -1,5 +1,8 @@
 # Stickers Memo App
 
+![image](https://github.com/usingkim/APPSCHOOL/assets/55521930/2bb15f88-3b14-4a9f-abf2-fc65f80863d5)
+
+
 ## SwiftUI
     
 StickerAddView(isShowingSheet: .constant(true))
