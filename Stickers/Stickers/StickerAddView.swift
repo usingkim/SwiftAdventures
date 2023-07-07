@@ -8,13 +8,41 @@
 import SwiftUI
 
 struct StickerAddView: View {
+    @Binding var isShowingSheet: Bool
+    
+    let colors: [Color] = [.cyan, .purple, .blue, .yellow, .brown]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List{
+                Section ("Select a color") {
+                    HStack {
+                        ForEach(colors, id:\.self) { color in
+                            Rectangle()
+                                .foregroundColor(color)
+                                .frame(height: 50)
+                                .shadow(radius: 6)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Add a Sticker!")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Button("Cancel") {
+                        isShowingSheet = false
+                    }
+                }
+            }
+            
+        }
+        
     }
 }
 
 struct StickerAddView_Previews: PreviewProvider {
     static var previews: some View {
-        StickerAddView()
+        StickerAddView(isShowingSheet: .constant(true))
     }
 }
