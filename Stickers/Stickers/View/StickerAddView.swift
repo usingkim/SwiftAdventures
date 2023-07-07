@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StickerAddView: View {
+    var stickerStore: StickerStore
     @Binding var isShowingSheet: Bool
     
     @State var selectedColor: Color = .cyan
@@ -53,7 +54,8 @@ struct StickerAddView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        print("submit")
+                        stickerStore.addSticker(memo: memo, color: selectedColor)
+                        isShowingSheet = false
                     } label: {
                         Text("Submit")
                     }
@@ -71,6 +73,6 @@ struct StickerAddView: View {
 
 struct StickerAddView_Previews: PreviewProvider {
     static var previews: some View {
-        StickerAddView(isShowingSheet: .constant(true))
+        StickerAddView(stickerStore: StickerStore(), isShowingSheet: .constant(true))
     }
 }

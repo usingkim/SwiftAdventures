@@ -9,18 +9,20 @@ import SwiftUI
 
 
 struct StickerListView: View {
+    /*
+     StateObject와 ObservedObject 모두 Observable 프로토콜을 따르는 클래스를 관찰해서 body를 변경한다.
+     StateObject와 ObservedObject는 슈퍼뷰와 서브뷰 사이에서 늘 새롭게 만들어지느냐, 아니면 그 상태를 유지하냐에서 동작 방식 차이가 존재한다.
+     (자세한 건 나중에...)
+     */
+    @StateObject var stickerStore: StickerStore = StickerStore()
+    
     // Binding으로 넘기는 Bool, Int 같은 기본값에는 State Property Wrapper를 꼭 달아줘야한다.
     @State var isSheetPresented: Bool = false
     
     var body: some View {
         VStack{
-            List{
-                StickerView()
-                StickerView()
-                StickerView()
-                StickerView()
-                StickerView()
-                StickerView()
+            List(stickerStore.stickers){ sticker in
+                StickerView(sticker: sticker, stickerStore: stickerStore)
             }
             
             //            Label("Add", systemImage: "plus.app")
@@ -43,7 +45,7 @@ struct StickerListView: View {
         }
         // content에는 View 이름
         .sheet(isPresented: $isSheetPresented) {
-            StickerAddView(isShowingSheet: $isSheetPresented)
+            StickerAddView(stickerStore: stickerStore, isShowingSheet: $isSheetPresented)
         }
         
     }
