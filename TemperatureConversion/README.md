@@ -4,7 +4,7 @@
 Storyboard의 코드를 이용하기
 
 대표적인 코드
-      ₩₩₩swift
+      ```swift
         let fButton = UIButton()
         fButton.setTitle("화씨", for: .normal)
         fButton.setTitleColor(.blue, for: .normal)
