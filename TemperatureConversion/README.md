@@ -4,7 +4,8 @@
 Storyboard의 코드를 이용하기
 
 대표적인 코드
-      ```swift
+
+```swift
         let fButton = UIButton()
         fButton.setTitle("화씨", for: .normal)
         fButton.setTitleColor(.blue, for: .normal)
@@ -13,4 +14,4 @@ Storyboard의 코드를 이용하기
         fButton.translatesAutoresizingMaskIntoConstraints = false
         fButton.centerXAnchor.constraint(equalTo: inputTemp.centerXAnchor, constant: 20).isActive = true
         fButton.centerYAnchor.constraint(equalTo: inputTemp.centerYAnchor, constant: 50).isActive = true
-      ```
+```
