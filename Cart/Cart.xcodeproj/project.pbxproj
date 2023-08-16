@@ -14,6 +14,7 @@
 		A6AEC62C2A806EE7004ECE69 /* CartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AEC62B2A806EE7004ECE69 /* CartTests.swift */; };
 		A6AEC6362A806EE7004ECE69 /* CartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AEC6352A806EE7004ECE69 /* CartUITests.swift */; };
 		A6AEC6382A806EE7004ECE69 /* CartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AEC6372A806EE7004ECE69 /* CartUITestsLaunchTests.swift */; };
+		A6AEC6452A8080E6004ECE69 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = A6AEC6442A8080E6004ECE69 /* products.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		A6AEC6312A806EE7004ECE69 /* CartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AEC6352A806EE7004ECE69 /* CartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUITests.swift; sourceTree = "<group>"; };
 		A6AEC6372A806EE7004ECE69 /* CartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A6AEC6442A8080E6004ECE69 /* products.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				A6AEC61A2A806EE6004ECE69 /* CartApp.swift */,
 				A6AEC61C2A806EE6004ECE69 /* ContentView.swift */,
+				A6AEC6442A8080E6004ECE69 /* products.json */,
 				A6AEC61E2A806EE7004ECE69 /* Assets.xcassets */,
 				A6AEC6202A806EE7004ECE69 /* Preview Content */,
 			);
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6AEC6452A8080E6004ECE69 /* products.json in Resources */,
 				A6AEC6222A806EE7004ECE69 /* Preview Assets.xcassets in Resources */,
 				A6AEC61F2A806EE7004ECE69 /* Assets.xcassets in Resources */,
 			);

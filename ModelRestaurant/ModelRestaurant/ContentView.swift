@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Restaurant: Identifiable {
+struct Restaurant: Identifiable, Codable {
     // 업태 (한식 이런거), 업소명, 도로명주소, 주메뉴
     var id: UUID = UUID()
     var occupation: String
@@ -21,7 +21,7 @@ class RestaurantStore: ObservableObject {
     
     func fetchRestaurants() async {
         
-        let key = "onlGIkGMHENrMtmK%2BT0beq8d4qEbIwXSE8x5wIMSg57O5%2FgJjUfY%2BpWb7ra3Rmmo1T%2FciTphPU9%2F0p3%2FifW15w%3D%3"
+        let key = "onlGIkGMHENrMtmK+T0beq8d4qEbIwXSE8x5wIMSg57O5/gJjUfY+pWb7ra3Rmmo1T/ciTphPU9/0p3/ifW15w=="
         
         let urlString = "http://apis.data.go.kr/6260000/BusanTblFnrstrnStusService/getTblFnrstrnStusInfo?serviceKey=\(key)"
         
@@ -38,27 +38,25 @@ class RestaurantStore: ObservableObject {
             
             restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
             
-            fetchMessage = ""
         } catch {
             debugPrint("--------")
             debugPrint("Error loading \(url):")
             debugPrint("\(String(describing: error))")
             debugPrint("--------")
             
-            fetchMessage = "상품정보 읽기 실패했습니다"
         }
     }
 }
 
 struct ContentView: View {
+    var restaurantsStore = RestaurantStore()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        List {
+            ForEach(restaurantsStore.restaurants) { restaurant in
+                Text("\(restaurant.name)")
+            }
         }
-        .padding()
     }
 }
 

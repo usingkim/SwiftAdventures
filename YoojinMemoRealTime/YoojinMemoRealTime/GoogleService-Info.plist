@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>218961930597-fe1o43d39sabnalsben75m36g1t6rugj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.218961930597-fe1o43d39sabnalsben75m36g1t6rugj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDHcm2Hgg2lWdhlbCAvw4E4Re4kZmhZy-U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>218961930597</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.usingkkim.YoojinMemoRealTime</string>
+	<key>PROJECT_ID</key>
+	<string>yoojin-memo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yoojin-memo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:218961930597:ios:826b5465f72666e12fd98c</string>
+	<key>DATABASE_URL</key>
+	<string>https://yoojin-memo-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
