@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 class MemoStore: ObservableObject {
     @Published var memoArray: [Memo] = []
@@ -30,15 +31,36 @@ class MemoStore: ObservableObject {
         //            }
         //        }
         
-        // server에서 가져오는 법
-        Database.database().reference().child("memo").observe(.value) { snapshot in
-            if let value = snapshot.value as? String {
-                if let savedMemoData = value.data(using: .utf8) {
-                    if let savedMemoArray = try? JSONDecoder().decode([Memo].self, from: savedMemoData) {
-                        DispatchQueue.main.async {
-                            self.memoArray = savedMemoArray
-                        }
-                    }
+        // Firebase의 Realtime Database 에서 가져오는 법
+//        Database.database().reference().child("memo").observe(.value) { snapshot in
+//            if let value = snapshot.value as? String {
+//                if let savedMemoData = value.data(using: .utf8) {
+//                    if let savedMemoArray = try? JSONDecoder().decode([Memo].self, from: savedMemoData) {
+//                        DispatchQueue.main.async {
+//                            self.memoArray = savedMemoArray
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        
+        // Firebase의 Cloud Firestore에서 읽기
+        Firestore.firestore().collection("Memo").getDocuments { (snapshot, error) in
+            if let snapshot {
+                var savedMemoArray: [Memo] = []
+                
+                for document in snapshot.documents {
+                    let id: String = document.documentID
+                    
+                    let docData = document.data()
+                    let text: String = docData["text"] as? String ?? ""
+                    
+                    let memo: Memo = Memo(id: id, text: text)
+                    savedMemoArray.append(memo)
+                }
+                
+                DispatchQueue.main.async {
+                    self.memoArray = savedMemoArray
                 }
             }
         }
@@ -60,14 +82,46 @@ class MemoStore: ObservableObject {
     }
     
     func addMemo(text: String) {
+        // RealTime
+//        let memo: Memo = Memo(text: text)
+//        memoArray.append(memo)
+//        Task {
+//            await saveMemo()
+//        }
+        
         let memo: Memo = Memo(text: text)
-        memoArray.append(memo)
+        
         Task {
-            await saveMemo()
+            do {
+                try await Firestore.firestore().collection("Memo")
+                    .document(memo.id)
+                    .setData(["text": memo.text])
+                
+                memoArray.append(memo)
+            } catch {
+                print("firestore error")
+            }
         }
     }
     
     func removeMemo(at Offsets: IndexSet) {
-        memoArray.remove(atOffsets: Offsets)
+        // RealTime
+//        memoArray.remove(atOffsets: Offsets)
+        
+        for offset in offsets {
+            print("\(offset)")
+            let memo = memoArray[offset]
+            print("\(memo)")
+            
+            Task {
+                do {
+                    try await Firestore.firestore().collection("Memo").document(memo.id).delete()
+                } catch {
+                    print("Firestore remove error")
+                }
+            }
+            
+            memoArray.remove(at: offset)
+        }
     }
 }
