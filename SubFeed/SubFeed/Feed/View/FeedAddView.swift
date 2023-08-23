@@ -14,7 +14,6 @@ struct FeedAddView: View {
     @ObservedObject var postStore : PostStore
     
     @State var postImages: [UIImage] = []
-    @State var numOfImages: Int = 0
     @State private var newString: String = ""
     @State private var stringArray: [String] = []
     @State private var userLetterData : String = ""
@@ -53,7 +52,7 @@ struct FeedAddView: View {
             
             /* 포토뷰 */
             if postImages.count == 0 {
-                imageSelectView(postImages: $postImages, numOfImages: $numOfImages)
+                imageSelectView(postImages: $postImages)
             }
             else {
                 imageScrollView(postImages: $postImages)
@@ -89,7 +88,7 @@ struct FeedAddView: View {
                     
                 } label: {
                     Text("취소")
-                }.foregroundColor(.blue) //새 글쓰기창 버튼 색과 수정 창 버튼 색이 다르게보여서 설정해둠.
+                }.foregroundColor(.blue)
                 
                 
             }

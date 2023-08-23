@@ -33,12 +33,13 @@ class PostStore : ObservableObject{
             index += 1
         }
     }
-    func revisePost(_ post : Post, _ letter : String) {
+    func revisePost(_ post : Post, _ letter : String, _ image: [UIImage]) {
         var index: Int = 0
         
         for tempPost in posts {
             if tempPost.id == post.id {
                 posts[index].letter = letter
+                posts[index].image = image
                 break
             }
             index += 1

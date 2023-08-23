@@ -11,7 +11,6 @@ import PhotosUI
 struct imageSelectView: View {
     
     @Binding var postImages: [UIImage]
-    @Binding var numOfImages: Int
     
     @State private var selectedItems: [PhotosPickerItem] = []
     private let numOfMaxImages: Int = 1
@@ -40,7 +39,6 @@ struct imageSelectView: View {
                         }
                     }
                 }
-                numOfImages = postImages.count
             }
         }
     }
