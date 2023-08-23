@@ -4,14 +4,15 @@
 //  Created by dayexx on 2023/08/22.
 //
 
-import Foundation
+//import Foundation
+import SwiftUI
 
 struct Post : Identifiable {
     var id : UUID = UUID()
     var userName : String
     var userImage : String // 어떤식으로 이미지 넣는지 보고 수정
     var organization : String
-    var image : String // 얘도 보고 수정
+    var image : [UIImage] // 얘도 보고 수정
     var letter : String
     var like : Int
     var isReported : Bool = false //false가 기본값, true면 어떤 사용자가 신고한 적 있는 포스트

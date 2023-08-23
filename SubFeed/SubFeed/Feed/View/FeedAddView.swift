@@ -6,29 +6,15 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 struct FeedAddView: View {
     
     @Binding var isShowingSheet : Bool
     
-    let numOfMaxImages: Int = 1
-    var isNumOfImages1: Bool {
-        if numOfImages == 1{
-            return true
-        }
-        return false
-    }
-    
-    // 수정시 postText로 값 들어오게 해놔서 이 부분 수정해야함. -> 수정했는데, 데이터 받아야 제대로 수정할것같음!
-    
     @ObservedObject var postStore : PostStore
     
-    @State var selectedItems: [PhotosPickerItem] = []
     @State var postImages: [UIImage] = []
     @State var numOfImages: Int = 0
-    @State var textEditorHeight: CGFloat = 300
-    
     @State private var newString: String = ""
     @State private var stringArray: [String] = []
     @State private var userLetterData : String = ""
@@ -67,38 +53,10 @@ struct FeedAddView: View {
             
             /* 포토뷰 */
             if postImages.count == 0 {
-                PhotosPicker(selection: $selectedItems, maxSelectionCount: numOfMaxImages, matching: .images) {
-                    HStack{
-                        Image(systemName: "paperclip")
-                        //                        .resizable()
-                        //                        .frame(width: 50, height: 40)
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }.padding()
-                    
-                    
-                }
-                .padding()
-                .frame(height: 70)
-                
+                imageSelectView(postImages: $postImages, numOfImages: $numOfImages)
             }
             else {
-                ScrollView(.horizontal) {
-                    HStack{
-                        ForEach(postImages, id:\.self) { image in
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: 393)
-                                .frame(maxHeight: 300)
-                            //  .onTapGesture {
-                            // Image Remove Code 삽입하는것도?
-                            //                                    print("Clicked!")
-                            //                                }
-                        }
-                    }
-                }
-                .scrollDisabled(isNumOfImages1)
+                imageScrollView(postImages: $postImages)
             }
             
             Spacer()
@@ -122,20 +80,21 @@ struct FeedAddView: View {
                     Text("게시")
                 }.foregroundColor(.blue) //새 글쓰기창 버튼 색과 수정 창 버튼 색이 다르게보여서 설정해둠.
             }
-        }
-        .onChange(of: selectedItems) { _ in
-            Task{
-                postImages.removeAll()
-                for item in selectedItems {
-                    if let data = try? await item.loadTransferable(type: Data.self) {
-                        if let uiImage = UIImage(data: data) {
-                            postImages.append(uiImage)
-                        }
-                    }
-                }
-                numOfImages = postImages.count
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+
+                    isShowingSheet = false //모달 닫기
+                    
+                    
+                } label: {
+                    Text("취소")
+                }.foregroundColor(.blue) //새 글쓰기창 버튼 색과 수정 창 버튼 색이 다르게보여서 설정해둠.
+                
+                
             }
         }
+        
         
     }
     
@@ -144,7 +103,7 @@ struct FeedAddView: View {
         print(userLetterData)
         // stringArray = userLetterData.components(separatedBy: "\n") -> 반대로 잘라서 넣는 코드
         
-        postStore.addPost(Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: "sin", letter: userLetterData, like: 0))
+        postStore.addPost(Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: postImages, letter: userLetterData, like: 0))
     }
 }
 

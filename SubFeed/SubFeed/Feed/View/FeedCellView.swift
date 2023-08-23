@@ -50,7 +50,10 @@ struct FeedCellView: View {
             
             /* 포스팅 내용 */
             Text("\(post.letter)").padding()
-            Image(post.image).resizable().frame(height:400)
+            
+            notBindingImageScrollView(postImages: post.image)
+//            Image(uiImage: post.image[0])
+                
             
             /* 좋아요, 댓글    TODO - 하트취소 구현   */
             HStack(){
@@ -86,6 +89,6 @@ struct FeedCellView: View {
 
 struct FeedCellView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCellView(post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자들", image: "sin", letter: "집가고싶다", like: 3), postStore: PostStore())
+        FeedCellView(post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자들", image: [UIImage(named: "sin") ?? UIImage()], letter: "집가고싶다", like: 3), postStore: PostStore())
     }
 }

@@ -71,10 +71,10 @@ struct FeedReviseView: View {
             
             /* 포토뷰 */
             
-            
-            Image(post.image)
+            // 이미지가 없는 경우도 고려 해야됨!!
+            Image(uiImage: post.image[0])
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .frame(height:400)
                
             
             
@@ -127,7 +127,7 @@ struct FeedReviseView: View {
 struct FeedReviseView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            FeedReviseView(isShowingSheet: .constant(true) , post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: "sin", letter: "자고싶다", like: 3), postStore: PostStore())
+            FeedReviseView(isShowingSheet: .constant(true) , post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: [UIImage(named: "sin") ?? UIImage()], letter: "자고싶다", like: 3), postStore: PostStore())
         }
     }
 }

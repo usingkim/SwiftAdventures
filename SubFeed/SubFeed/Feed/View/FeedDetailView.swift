@@ -15,7 +15,7 @@ struct FeedDetailView: View {
             ScrollView {
                 /* 게시물 */
                 Spacer(minLength: 60)
-                FeedCellView(post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자들", image: "sin", letter: "응애", like: 3), postStore: PostStore())
+                FeedCellView(post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자들", image: [UIImage(named: "sin") ?? UIImage()], letter: "응애", like: 3), postStore: PostStore())
                 Divider().bold()
                 
                 

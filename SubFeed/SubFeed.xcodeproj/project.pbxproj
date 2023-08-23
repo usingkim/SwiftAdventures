@@ -19,7 +19,7 @@
 		C4AF58C92A96501400D0E09A /* FeedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58BD2A96501400D0E09A /* FeedMainView.swift */; };
 		C4AF58CA2A96501400D0E09A /* FeedReviseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */; };
 		C4AF58CB2A96501400D0E09A /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58C02A96501400D0E09A /* ProfileImageView.swift */; };
-		C4AF58CD2A9651F300D0E09A /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58CC2A9651F300D0E09A /* WritingView.swift */; };
+		C4AF58D12A9664EB00D0E09A /* FeedImageViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58D02A9664EB00D0E09A /* FeedImageViewStructs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		C4AF58BD2A96501400D0E09A /* FeedMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedMainView.swift; sourceTree = "<group>"; };
 		C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedReviseView.swift; sourceTree = "<group>"; };
 		C4AF58C02A96501400D0E09A /* ProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
-		C4AF58CC2A9651F300D0E09A /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
+		C4AF58D02A9664EB00D0E09A /* FeedImageViewStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 				C4AF58BD2A96501400D0E09A /* FeedMainView.swift */,
 				C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */,
 				C4AF58BF2A96501400D0E09A /* SubView */,
-				C4AF58CC2A9651F300D0E09A /* WritingView.swift */,
+				C4AF58D02A9664EB00D0E09A /* FeedImageViewStructs.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,8 +198,8 @@
 			files = (
 				C4AF58C22A96501400D0E09A /* Post.swift in Sources */,
 				C4AF58C32A96501400D0E09A /* PostStore.swift in Sources */,
-				C4AF58CD2A9651F300D0E09A /* WritingView.swift in Sources */,
 				C4AF58C92A96501400D0E09A /* FeedMainView.swift in Sources */,
+				C4AF58D12A9664EB00D0E09A /* FeedImageViewStructs.swift in Sources */,
 				C4AF58CA2A96501400D0E09A /* FeedReviseView.swift in Sources */,
 				C4AF58CB2A96501400D0E09A /* ProfileImageView.swift in Sources */,
 				C4AF58A72A964FEB00D0E09A /* ContentView.swift in Sources */,
