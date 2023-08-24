@@ -57,10 +57,13 @@ struct FeedReviseView: View {
             
             /* 포토뷰 */
             if post.image.count == 0 && postImages.count == 0{
+                // postImages로 이미지가 들어감
                 imageSelectView(postImages: $postImages)
             }
             else {
-                notBindingImageScrollView(postImages: postImages)
+                // TODO: 작성된 게시글에서 이미지 없 -> 있으로 수정시 피드에 나타나지 않음
+                imageScrollView(postImages: $postImages)
+                
             }
             
             
@@ -79,6 +82,10 @@ struct FeedReviseView: View {
                         newString = ""
                     }
                     
+                    if post.image.count != 0 {
+                        postImages = post.image
+                    }
+                    
                     isShowingSheet = false //모달 닫기
                     submit()
                     
@@ -89,16 +96,14 @@ struct FeedReviseView: View {
             
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-
                     isShowingSheet = false //모달 닫기
-                    
-                    
                 } label: {
                     Text("취소")
                 }.foregroundColor(.blue)
-                
-                
             }
+        }
+        .onAppear {
+            postImages = post.image
         }
         
     }
@@ -115,7 +120,7 @@ struct FeedReviseView: View {
 struct FeedReviseView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            FeedReviseView(isShowingSheet: .constant(true) , post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: [UIImage(named: "sin") ?? UIImage()], letter: "자고싶다", like: 3), postStore: PostStore())
+            FeedReviseView(isShowingSheet: .constant(true) , post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: [], letter: "자고싶다", like: 3), postStore: PostStore())
         }
     }
 }

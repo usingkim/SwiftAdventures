@@ -9,14 +9,17 @@ import SwiftUI
 struct FeedMainView: View {
     @StateObject private var postStore: PostStore = PostStore()
     @State private var isAddingPost : Bool = false
+    @State private var isShowingAlert : Bool = false
     
     var body: some View {
         NavigationStack {
             ScrollView{
                 Divider()
+                
                 ForEach(postStore.posts) { post in
                     Spacer(minLength: 30)
-                    FeedCellView(post: post, postStore: postStore)
+                    FeedCellView(post: post, postStore: postStore, isShowingAlert: $isShowingAlert)
+                    
                     Spacer()
                     Divider()
                 }
@@ -26,8 +29,6 @@ struct FeedMainView: View {
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $isAddingPost) {
                 NavigationStack{
-                   //피드
-                   // FeedC_U_View(isShowingSheet: $isAddingPost, mode: .write, )
                     FeedAddView(isShowingSheet: $isAddingPost, postStore: postStore)
                 }
             }
@@ -39,7 +40,18 @@ struct FeedMainView: View {
                         Label("글쓰기", systemImage: "plus")
                     }
                 }
-                
+            }
+            .alert(isPresented: $isShowingAlert) {
+                Alert(
+                    title: Text("알림"),
+                    message: Text("해당 게시물을 삭제하시겠습니까?"),
+                    primaryButton: .default(Text("확인"), action: {
+                        //postStore.removePost(selectedPost);
+                    }),
+                    secondaryButton: .cancel(Text("취소").foregroundColor(.red), action: {
+                        
+                    })
+                )
             }
     }
 }

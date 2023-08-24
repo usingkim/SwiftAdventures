@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EE789E72A96E2400010370D /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE789E62A96E2400010370D /* Reply.swift */; };
+		3EE789E92A96E24B0010370D /* ReplyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE789E82A96E24B0010370D /* ReplyStore.swift */; };
+		3EE789EB2A96E2C90010370D /* FeedReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE789EA2A96E2C90010370D /* FeedReplyView.swift */; };
+		3EE789ED2A96E5920010370D /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE789EC2A96E5920010370D /* ReportView.swift */; };
 		C4AF58A52A964FEB00D0E09A /* SubFeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58A42A964FEB00D0E09A /* SubFeedApp.swift */; };
 		C4AF58A72A964FEB00D0E09A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58A62A964FEB00D0E09A /* ContentView.swift */; };
 		C4AF58A92A964FEC00D0E09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AF58A82A964FEC00D0E09A /* Assets.xcassets */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3EE789E62A96E2400010370D /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		3EE789E82A96E24B0010370D /* ReplyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyStore.swift; sourceTree = "<group>"; };
+		3EE789EA2A96E2C90010370D /* FeedReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReplyView.swift; sourceTree = "<group>"; };
+		3EE789EC2A96E5920010370D /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		C4AF58A12A964FEB00D0E09A /* SubFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AF58A42A964FEB00D0E09A /* SubFeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubFeedApp.swift; sourceTree = "<group>"; };
 		C4AF58A62A964FEB00D0E09A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +108,8 @@
 			children = (
 				C4AF58B52A96501400D0E09A /* Post.swift */,
 				C4AF58B62A96501400D0E09A /* PostStore.swift */,
+				3EE789E62A96E2400010370D /* Reply.swift */,
+				3EE789E82A96E24B0010370D /* ReplyStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,11 +119,11 @@
 			children = (
 				C4AF58B82A96501400D0E09A /* FeedCellView.swift */,
 				C4AF58BA2A96501400D0E09A /* FeedDetailView.swift */,
+				3EE789EA2A96E2C90010370D /* FeedReplyView.swift */,
 				C4AF58BC2A96501400D0E09A /* FeedAddView.swift */,
 				C4AF58BD2A96501400D0E09A /* FeedMainView.swift */,
 				C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */,
 				C4AF58BF2A96501400D0E09A /* SubView */,
-				C4AF58D02A9664EB00D0E09A /* FeedImageViewStructs.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -121,7 +131,9 @@
 		C4AF58BF2A96501400D0E09A /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				C4AF58D02A9664EB00D0E09A /* FeedImageViewStructs.swift */,
 				C4AF58C02A96501400D0E09A /* ProfileImageView.swift */,
+				3EE789EC2A96E5920010370D /* ReportView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -196,13 +208,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EE789E92A96E24B0010370D /* ReplyStore.swift in Sources */,
 				C4AF58C22A96501400D0E09A /* Post.swift in Sources */,
 				C4AF58C32A96501400D0E09A /* PostStore.swift in Sources */,
 				C4AF58C92A96501400D0E09A /* FeedMainView.swift in Sources */,
 				C4AF58D12A9664EB00D0E09A /* FeedImageViewStructs.swift in Sources */,
 				C4AF58CA2A96501400D0E09A /* FeedReviseView.swift in Sources */,
 				C4AF58CB2A96501400D0E09A /* ProfileImageView.swift in Sources */,
+				3EE789E72A96E2400010370D /* Reply.swift in Sources */,
+				3EE789ED2A96E5920010370D /* ReportView.swift in Sources */,
 				C4AF58A72A964FEB00D0E09A /* ContentView.swift in Sources */,
+				3EE789EB2A96E2C90010370D /* FeedReplyView.swift in Sources */,
 				C4AF58C82A96501400D0E09A /* FeedAddView.swift in Sources */,
 				C4AF58A52A964FEB00D0E09A /* SubFeedApp.swift in Sources */,
 				C4AF58C42A96501400D0E09A /* FeedCellView.swift in Sources */,

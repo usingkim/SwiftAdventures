@@ -60,39 +60,12 @@ struct imageScrollView: View {
                 ForEach(postImages, id:\.self) { image in
                     Image(uiImage: image)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 393)
+                        //.aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 396)
                         .frame(maxHeight: 300)
                 }
             }
         }
         .scrollDisabled(isNumOfImages1)
-    }
-}
-
-struct notBindingImageScrollView: View {
-    var postImages: [UIImage]
-    
-    private var isNumOfImages1: Bool {
-        if postImages.count == 1{
-            return true
-        }
-        return false
-    }
-    
-    var body: some View {
-        ScrollView(.horizontal) {
-            HStack{
-                ForEach(postImages, id:\.self) { image in
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 393)
-                        .frame(maxHeight: 300)
-                }
-            }
-        }
-        .scrollDisabled(isNumOfImages1)
-        
     }
 }

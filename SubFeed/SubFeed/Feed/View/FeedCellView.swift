@@ -12,6 +12,11 @@ struct FeedCellView: View {
     var postStore : PostStore
     @State var isClickedHeart : Bool = false
     @State private var isShowingSheet : Bool = false
+    @State private var isShowingReply : Bool = false
+    @State private var isShowingReport : Bool = false
+    @State private var postImages: [UIImage] = []
+    @Binding var isShowingAlert : Bool
+    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -36,24 +41,22 @@ struct FeedCellView: View {
                         Label("수정", systemImage: "pencil")
                     }
                     //Menu드롭다운에서 foregroundColor설정 불가(ButtonStyle, LebleStyle등 커스텀으로 지정해줘도 안됐음), role로 지정해줘야되는데 삭제랑 색깔이 겹치는게 거슬림
-                    Button(role: .destructive, action: { postStore.reportPost(post); print("\(post.isReported)")}) {
+                    Button(role: .destructive, action: { postStore.reportPost(post); isShowingReport = true}) {
                         Label("신고", systemImage: "exclamationmark.triangle.fill").bold()
                     }
-                    Button(role: .destructive, action: { postStore.removePost(post)}) {
+                    Button(role: .destructive, action: {isShowingAlert = true}) {
                         Label("삭제", systemImage: "trash").bold()
                     }
                 } label : {
                     Image(systemName: "ellipsis")
                 }.foregroundColor(.gray)
-                .padding()
+                    .padding()
             }
             
             /* 포스팅 내용 */
             Text("\(post.letter)").padding()
+            imageScrollView(postImages: $postImages)
             
-            notBindingImageScrollView(postImages: post.image)
-//            Image(uiImage: post.image[0])
-                
             
             /* 좋아요, 댓글    TODO - 하트취소 구현   */
             HStack(){
@@ -65,30 +68,55 @@ struct FeedCellView: View {
                     Image(systemName: isClickedHeart ? "heart.fill" : "heart").font(.system(size: 20)).foregroundColor(.pink)
                 }.padding()
                 
-                NavigationLink{ // 댓글 누르면 디테일뷰(댓글뷰)로 이동
-                    FeedDetailView(replyText: "")
+                Button {
+                    isShowingReply = true
                 } label: {
                     Image(systemName: "bubble.right").font(.system(size: 20))
                 }
                 
+                /*
+                 NavigationLink{ // 댓글 누르면 디테일뷰(댓글뷰)로 이동
+                 FeedDetailView(replyText: "")
+                 } label: {
+                 Image(systemName: "bubble.right").font(.system(size: 20))
+                 }*/
+                
                 Spacer()
-               
+                
             }.foregroundColor(.black)
-           
+            
         } .sheet(isPresented: $isShowingSheet) {
             //수정 뷰
             NavigationStack{
                 /*let image = UIImage(named: post.image) ?? UIImage()
-                FeedC_U_View(isShowingSheet: $isShowingSheet, mode: .revise, post : post)*/
+                 FeedC_U_View(isShowingSheet: $isShowingSheet, mode: .revise, post : post)*/
                 FeedReviseView(isShowingSheet: $isShowingSheet, post:post, postStore: postStore)
             }
+        } .sheet(isPresented: $isShowingReply) {
+            //댓글 뷰
+            NavigationStack{
+                FeedReplyView()
+            }
+        }.sheet(isPresented: $isShowingReport) {
+            //신고 뷰
+            NavigationStack{
+                ReportView()
+            }
         }
+        .onAppear{
+            postImages = post.image
+        }
+        .onChange(of: post.image) { newValue in
+            postImages = newValue
+        }
+        
     }
+    
 }
 
 
 struct FeedCellView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCellView(post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자들", image: [UIImage(named: "sin") ?? UIImage()], letter: "집가고싶다", like: 3), postStore: PostStore())
+        FeedCellView(post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자들", image: [UIImage(named: "sin") ?? UIImage()], letter: "집가고싶다", like: 3), postStore: PostStore(), isShowingAlert: .constant(true))
     }
 }
