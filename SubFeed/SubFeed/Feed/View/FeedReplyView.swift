@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedReplyView: View {
-    @StateObject var replyStore = ReplyStore()
+    @StateObject var replyStore: ReplyStore // StateObject 유무 ... 나중에...
     @State private var replyText : String = ""
     
     var body: some View {
@@ -16,18 +16,21 @@ struct FeedReplyView: View {
         
         ZStack{
             /* 댓글 */
-            List(replyStore.replies) { reply in
-                VStack(alignment: .leading) {
-                    
-                    HStack {
-                        ProfileImageView(image: reply.imageString).frame(width: 20)
-                        Text(reply.username).bold()
-                        Spacer()
-                        Text(reply.createdDate)
-                    }
-                    .font(.footnote)
-                    Text(reply.text)
-                }.padding()
+            List{
+                ForEach(replyStore.replies) { reply in
+                    VStack(alignment: .leading) {
+                        
+                        HStack {
+                            ProfileImageView(image: reply.imageString).frame(width: 20)
+                            Text(reply.username).bold()
+                            Spacer()
+                            Text(reply.createdDate)
+                        }
+                        .font(.footnote)
+                        
+                        Text(reply.text)
+                    }.padding()
+                }.onDelete(perform: replyStore.deleteReply)
             }.listStyle(.plain)
             
             /* 댓글 입력창 */
@@ -48,14 +51,14 @@ struct FeedReplyView: View {
             
         } .navigationTitle("댓글")
             .navigationBarTitleDisplayMode(.inline)
-  
+        
     }
 }
 
-    struct FeedReplyView_Previews: PreviewProvider {
-        static var previews: some View {
-            NavigationStack{
-                FeedReplyView()
-            }
+struct FeedReplyView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack{
+            //                FeedReplyView()
         }
     }
+}

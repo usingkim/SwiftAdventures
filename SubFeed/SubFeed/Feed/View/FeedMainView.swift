@@ -8,6 +8,7 @@ import SwiftUI
 
 struct FeedMainView: View {
     @StateObject private var postStore: PostStore = PostStore()
+    @StateObject var replyStore = ReplyStore()
     @State private var isAddingPost : Bool = false
     @State private var isShowingAlert : Bool = false
     
@@ -18,7 +19,7 @@ struct FeedMainView: View {
                 
                 ForEach(postStore.posts) { post in
                     Spacer(minLength: 30)
-                    FeedCellView(post: post, postStore: postStore, isShowingAlert: $isShowingAlert)
+                    FeedCellView(post: post, postStore: postStore, replyStore: replyStore, isShowingAlert: $isShowingAlert)
                     
                     Spacer()
                     Divider()

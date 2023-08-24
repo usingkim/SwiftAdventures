@@ -55,7 +55,7 @@ struct FeedAddView: View {
                 imageSelectView(postImages: $postImages)
             }
             else {
-                imageScrollView(postImages: $postImages)
+                imageScrollView(mode: 1, postImages: $postImages)
             }
             
             Spacer()

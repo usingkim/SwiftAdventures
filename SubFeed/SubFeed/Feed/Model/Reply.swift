@@ -8,7 +8,8 @@
 import Foundation
 
 struct Reply: Identifiable {
-    var id: String = UUID().uuidString
+   // var id: String = UUID().uuidString
+    var id : UUID = UUID()
     var username: String
     var text: String
     var createdAt: Double = Date().timeIntervalSince1970

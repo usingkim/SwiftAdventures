@@ -13,7 +13,7 @@ struct FeedReviseView: View {
     @Binding var isShowingSheet : Bool
     
     @State var post : Post
-    var postStore : PostStore
+    @ObservedObject var postStore : PostStore
     
     @State var postImages: [UIImage] = []
     @State private var newString: String = ""
@@ -56,12 +56,11 @@ struct FeedReviseView: View {
             
             
             /* 포토뷰 */
-            if post.image.count == 0 && postImages.count == 0{
-                // postImages로 이미지가 들어감
+            if postImages.count == 0{
                 imageSelectView(postImages: $postImages)
             }
             else {
-                imageScrollView(postImages: $postImages)
+                imageScrollView(mode: 1, postImages: $postImages)
             }
             
             
@@ -80,9 +79,7 @@ struct FeedReviseView: View {
                         newString = ""
                     }
                     
-                    if post.image.count != 0 {
-                        postImages = post.image
-                    }
+                    post.image = postImages
                     
                     isShowingSheet = false //모달 닫기
                     submit()

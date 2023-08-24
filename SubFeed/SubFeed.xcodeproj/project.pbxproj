@@ -18,7 +18,6 @@
 		C4AF58C22A96501400D0E09A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58B52A96501400D0E09A /* Post.swift */; };
 		C4AF58C32A96501400D0E09A /* PostStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58B62A96501400D0E09A /* PostStore.swift */; };
 		C4AF58C42A96501400D0E09A /* FeedCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58B82A96501400D0E09A /* FeedCellView.swift */; };
-		C4AF58C62A96501400D0E09A /* FeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58BA2A96501400D0E09A /* FeedDetailView.swift */; };
 		C4AF58C82A96501400D0E09A /* FeedAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58BC2A96501400D0E09A /* FeedAddView.swift */; };
 		C4AF58C92A96501400D0E09A /* FeedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58BD2A96501400D0E09A /* FeedMainView.swift */; };
 		C4AF58CA2A96501400D0E09A /* FeedReviseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */; };
@@ -39,7 +38,6 @@
 		C4AF58B52A96501400D0E09A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C4AF58B62A96501400D0E09A /* PostStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostStore.swift; sourceTree = "<group>"; };
 		C4AF58B82A96501400D0E09A /* FeedCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCellView.swift; sourceTree = "<group>"; };
-		C4AF58BA2A96501400D0E09A /* FeedDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailView.swift; sourceTree = "<group>"; };
 		C4AF58BC2A96501400D0E09A /* FeedAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAddView.swift; sourceTree = "<group>"; };
 		C4AF58BD2A96501400D0E09A /* FeedMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedMainView.swift; sourceTree = "<group>"; };
 		C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedReviseView.swift; sourceTree = "<group>"; };
@@ -118,11 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				C4AF58B82A96501400D0E09A /* FeedCellView.swift */,
-				C4AF58BA2A96501400D0E09A /* FeedDetailView.swift */,
 				3EE789EA2A96E2C90010370D /* FeedReplyView.swift */,
 				C4AF58BC2A96501400D0E09A /* FeedAddView.swift */,
 				C4AF58BD2A96501400D0E09A /* FeedMainView.swift */,
 				C4AF58BE2A96501400D0E09A /* FeedReviseView.swift */,
+				3EE789EC2A96E5920010370D /* ReportView.swift */,
 				C4AF58BF2A96501400D0E09A /* SubView */,
 			);
 			path = View;
@@ -133,7 +131,6 @@
 			children = (
 				C4AF58D02A9664EB00D0E09A /* FeedImageViewStructs.swift */,
 				C4AF58C02A96501400D0E09A /* ProfileImageView.swift */,
-				3EE789EC2A96E5920010370D /* ReportView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -222,7 +219,6 @@
 				C4AF58C82A96501400D0E09A /* FeedAddView.swift in Sources */,
 				C4AF58A52A964FEB00D0E09A /* SubFeedApp.swift in Sources */,
 				C4AF58C42A96501400D0E09A /* FeedCellView.swift in Sources */,
-				C4AF58C62A96501400D0E09A /* FeedDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

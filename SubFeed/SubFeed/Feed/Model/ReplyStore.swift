@@ -21,4 +21,8 @@ class ReplyStore: ObservableObject {
     func addReply(_ reply: Reply) {
         replies.append(reply)
     }
+    
+    func deleteReply(at offsets: IndexSet){
+        replies.remove(atOffsets: offsets)
+    }
 }

@@ -45,6 +45,8 @@ struct imageSelectView: View {
 }
 
 struct imageScrollView: View {
+    //TODO: mode enum으로 바꾸기 ,, 나중에,,
+    var mode: Int = 0
     @Binding var postImages: [UIImage]
     
     private var isNumOfImages1: Bool {
@@ -63,6 +65,19 @@ struct imageScrollView: View {
                         //.aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 396)
                         .frame(maxHeight: 300)
+                        .contextMenu {
+                            if mode == 1{
+                                Button(action: {
+                                    postImages.removeAll()
+                                }) {
+                                    // TODO: Label 빨간색 바꾸기
+                                    Text("삭제")
+                                    Image(systemName: "trash")
+                                }
+                                
+                                
+                            }
+                        }
                 }
             }
         }

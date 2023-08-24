@@ -11,7 +11,7 @@ class PostStore : ObservableObject{
     
     init(){
         posts = [
-            Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: [UIImage(named: "sin") ?? UIImage(), UIImage(named: "sin") ?? UIImage()], letter: "자고싶다", like: 3),
+            Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: [UIImage(named: "sin") ?? UIImage()], letter: "자고싶다", like: 3),
             Post(userName: "오리", userImage: "duck", organization: "구글", image: [UIImage(named: "sin") ?? UIImage()], letter: "집가고싶다", like: 10),
             Post(userName: "오리", userImage: "duck", organization: "토스", image: [UIImage(named: "sin") ?? UIImage()], letter: "자고싶다", like: 100),
             Post(userName: "오리", userImage: "duck", organization: "네이버", image: [UIImage(named: "sin") ?? UIImage()], letter: "집가고싶다", like: 999)
