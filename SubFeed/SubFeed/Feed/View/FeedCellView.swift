@@ -61,18 +61,29 @@ struct FeedCellView: View {
             /* 좋아요, 댓글    TODO - 하트취소 구현   */
             HStack(){
                 Button {
-                    postStore.likePost(post)
+                    if isClickedHeart {
+                        postStore.unlikePost(post)
+                    }
+                    else {
+                        postStore.likePost(post)
+                    }
+                    
                     isClickedHeart.toggle()
-                    print("\(post.like)")
+//                    print("\(post.like)")
                 } label: {
                     Image(systemName: isClickedHeart ? "heart.fill" : "heart").font(.system(size: 20)).foregroundColor(.pink)
-                }.padding()
+                }
+                
+                Text("\(post.like)")
                 
                 Button {
                     isShowingReply = true
                 } label: {
                     Image(systemName: "bubble.right").font(.system(size: 20))
                 }
+                
+                // TODO: 댓글 개수로 변경
+                Text("\(post.like)")
                 
                 /*
                  NavigationLink{ // 댓글 누르면 디테일뷰(댓글뷰)로 이동
@@ -84,6 +95,7 @@ struct FeedCellView: View {
                 Spacer()
                 
             }.foregroundColor(.black)
+                .padding()
             
         } .sheet(isPresented: $isShowingSheet) {
             //수정 뷰
@@ -103,6 +115,7 @@ struct FeedCellView: View {
                 ReportView()
             }
         }
+        
         .onAppear{
             postImages = post.image
         }

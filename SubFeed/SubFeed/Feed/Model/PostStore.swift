@@ -59,6 +59,18 @@ class PostStore : ObservableObject{
         
     }
     
+    func unlikePost(_ post: Post) { // 좋아요 취소
+        var index: Int = 0
+        
+        for tempPost in posts {
+            if tempPost.id == post.id {
+                posts[index].like -= 1
+                break
+            }
+            index += 1
+        }
+    }
+    
     func reportPost(_ post : Post){ //신고
         var index: Int = 0
         

@@ -61,9 +61,7 @@ struct FeedReviseView: View {
                 imageSelectView(postImages: $postImages)
             }
             else {
-                // TODO: 작성된 게시글에서 이미지 없 -> 있으로 수정시 피드에 나타나지 않음
                 imageScrollView(postImages: $postImages)
-                
             }
             
             
