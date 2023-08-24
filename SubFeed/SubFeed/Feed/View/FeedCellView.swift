@@ -115,7 +115,19 @@ struct FeedCellView: View {
                 ReportView()
             }
         }
-        
+        .alert(isPresented: $isShowingAlert) {
+            // 삭제 alert
+            Alert(
+                title: Text("알림"),
+                message: Text("해당 게시물을 삭제하시겠습니까?"),
+                primaryButton: .default(Text("확인"), action: {
+                    postStore.removePost(post)
+                }),
+                secondaryButton: .cancel(Text("취소").foregroundColor(.red), action: {
+
+                })
+            )
+        }
         .onAppear{
             postImages = post.image
         }

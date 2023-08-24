@@ -23,36 +23,26 @@ struct FeedMainView: View {
                     Spacer()
                     Divider()
                 }
-            }.foregroundColor(.black)
+            }
+            .foregroundColor(.black)
             
-        }.navigationTitle("피드")
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $isAddingPost) {
-                NavigationStack{
-                    FeedAddView(isShowingSheet: $isAddingPost, postStore: postStore)
+        }
+        .navigationTitle("피드")
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isAddingPost) {
+            NavigationStack{
+                FeedAddView(isShowingSheet: $isAddingPost, postStore: postStore)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    isAddingPost.toggle()
+                } label: {
+                    Label("글쓰기", systemImage: "plus")
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isAddingPost.toggle()
-                    } label: {
-                        Label("글쓰기", systemImage: "plus")
-                    }
-                }
-            }
-            .alert(isPresented: $isShowingAlert) {
-                Alert(
-                    title: Text("알림"),
-                    message: Text("해당 게시물을 삭제하시겠습니까?"),
-                    primaryButton: .default(Text("확인"), action: {
-                        //postStore.removePost(selectedPost);
-                    }),
-                    secondaryButton: .cancel(Text("취소").foregroundColor(.red), action: {
-                        
-                    })
-                )
-            }
+        }
     }
 }
 struct FeedMainView_Previews: PreviewProvider {
