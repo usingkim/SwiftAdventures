@@ -1,8 +1,8 @@
 //
 //  FeedReplyView.swift
-//  SubFeed
+//  S_nowManCustomer
 //
-//  Created by dayexx on 2023/08/24.
+//  Created by cha_nyeong on 2023/08/24.
 //
 
 import SwiftUI
@@ -28,9 +28,21 @@ struct FeedReplyView: View {
                         }
                         .font(.footnote)
                         
-                        Text(reply.text)
-                    }.padding()
-                }.onDelete(perform: replyStore.deleteReply)
+                        Text(reply.content)
+                    }
+                    .padding()
+                    .contextMenu {
+                        Button {
+                            replyStore.deleteReply(reply)
+                        } label: {
+                            Label("삭제", systemImage: "trash")
+                        }
+                    }
+                    
+                }
+                // TODO: ContextMenu
+                
+                //                .onDelete(perform: replyStore.deleteReply(reply))
             }.listStyle(.plain)
             
             /* 댓글 입력창 */
@@ -41,9 +53,13 @@ struct FeedReplyView: View {
                     HStack {
                         TextField("오리님에게 댓글 남기기", text: $replyText)
                         Button("게시") {
-                            replyStore.addReply(Reply(username: "오리", text: replyText, imageString: "duck"))
-                            replyText = ""
-                        }
+                            if(replyText == ""){}
+                            else{
+                                replyStore.addReply(Reply(username: "오리", content: replyText, imageString: "duck"))
+                                replyText = ""
+                            }
+                        }.disabled(replyText.isEmpty)
+                            .foregroundColor(replyText.isEmpty ? .black : .blue)
                     }
                     .padding()
                 }
@@ -51,6 +67,7 @@ struct FeedReplyView: View {
             
         } .navigationTitle("댓글")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear{replyStore.fetchReplies()}
         
     }
 }
@@ -62,3 +79,4 @@ struct FeedReplyView_Previews: PreviewProvider {
         }
     }
 }
+

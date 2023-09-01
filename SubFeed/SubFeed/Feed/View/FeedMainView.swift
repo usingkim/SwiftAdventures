@@ -1,13 +1,18 @@
+//
+//  FeedMainView.swift
+//  S_nowManCustomer
+//
+//  Created by cha_nyeong on 2023/08/24.
+//
+
 import SwiftUI
 
-
 /*
- 1. 글쓰기 뷰 - FeedMainView 29번 줄
- 2. 수정 뷰 - FeedCellView 77번 줄
+ Post -> Feed 로 바꿔야함
  */
 
 struct FeedMainView: View {
-    @StateObject private var postStore: PostStore = PostStore()
+    @StateObject private var feedStore: FeedStore = FeedStore()
     @StateObject var replyStore = ReplyStore()
     @State private var isAddingPost : Bool = false
     @State private var isShowingAlert : Bool = false
@@ -16,11 +21,9 @@ struct FeedMainView: View {
         NavigationStack {
             ScrollView{
                 Divider()
-                
-                ForEach(postStore.posts) { post in
+                ForEach(feedStore.feeds) { feed in
                     Spacer(minLength: 30)
-                    FeedCellView(post: post, postStore: postStore, replyStore: replyStore, isShowingAlert: $isShowingAlert)
-                    
+                    FeedCellView(feed: feed, feedStore: feedStore, replyStore: replyStore, isShowingAlert: $isShowingAlert)
                     Spacer()
                     Divider()
                 }
@@ -32,7 +35,7 @@ struct FeedMainView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isAddingPost) {
             NavigationStack{
-                FeedAddView(isShowingSheet: $isAddingPost, postStore: postStore)
+                FeedAddView(isShowingSheet: $isAddingPost, feedStore: feedStore)
             }
         }
         .toolbar {
@@ -44,6 +47,7 @@ struct FeedMainView: View {
                 }
             }
         }
+        .onAppear{feedStore.fetchFeeds()}
     }
 }
 struct FeedMainView_Previews: PreviewProvider {

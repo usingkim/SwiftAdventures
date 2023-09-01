@@ -1,9 +1,10 @@
 //
-//  profileImageView.swift
+//  ProfileImageView.swift
 //  S_nowManCustomer
 //
-//  Created by dayexx on 2023/08/22.
+//  Created by cha_nyeong on 2023/08/24.
 //
+
 import SwiftUI
 
 struct ProfileImageView: View {

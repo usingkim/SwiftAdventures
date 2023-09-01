@@ -2,21 +2,27 @@
 //  FeedAddView.swift
 //  S_nowManCustomer
 //
-//  Created by dayexx on 2023/08/23.
+//  Created by cha_nyeong on 2023/08/24.
 //
 
 import SwiftUI
+import FirebaseStorage
+import Firebase
+
+let FEED_IMAGES = "feed/images/"
 
 struct FeedAddView: View {
     
     @Binding var isShowingSheet : Bool
     
-    @ObservedObject var postStore : PostStore
+    @ObservedObject var feedStore: FeedStore
     
-    @State var postImages: [UIImage] = []
+    @State var feedUUID: String = ""
+    @State var feedImage: UIImage = UIImage()
     @State private var newString: String = ""
     @State private var stringArray: [String] = []
-    @State private var userLetterData : String = ""
+    @State private var userContentData : String = ""
+    @State private var isBlank: Bool = false
     @FocusState private var textFieldFocus: Bool
     
     var body: some View {
@@ -51,11 +57,12 @@ struct FeedAddView: View {
             
             
             /* 포토뷰 */
-            if postImages.count == 0 {
-                imageSelectView(postImages: $postImages)
+            if feedImage == UIImage() {
+                imageSelectView(feedImage: $feedImage)
             }
             else {
-                imageScrollView(mode: 1, postImages: $postImages)
+                imageScrollView(mode: .add, id: feedUUID, feedImage: $feedImage)
+                //imageScrollView(mode: .add, postImages: $postImages)
             }
             
             Spacer()
@@ -72,7 +79,7 @@ struct FeedAddView: View {
                         newString = ""
                     }
                     submit()
-                    isShowingSheet = false //모달 닫기
+                    
                     
                     
                 } label: {
@@ -93,16 +100,58 @@ struct FeedAddView: View {
                 
             }
         }
+        .alert(isPresented: $isBlank) {
+            Alert(title: Text("게시글을 입력해주세요"))
+        }
         
         
     }
     
     func submit() { //userLetterData는 String타입 유저게시물 데이터. 근데 데이터 받아올때도 \n를 기준으로 잘라서 넣어야 수정가능함
-        userLetterData = stringArray.joined(separator: "\n")
-        print(userLetterData)
+        userContentData = stringArray.joined(separator: "\n")
+        print(userContentData)
         // stringArray = userLetterData.components(separatedBy: "\n") -> 반대로 잘라서 넣는 코드
         
-        postStore.addPost(Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: postImages, letter: userLetterData, like: 0))
+        if userContentData.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            isBlank = true // alert 띄우기
+            textFieldFocus = true // focus 이동
+            return
+        }
+        
+        let newFeed = Feed(uid: "?", username: "오리", feedImage: "duck", content: userContentData, like: 0)
+        
+        feedStore.addFeed(newFeed)
+        feedUUID = newFeed.id
+        
+        // Feed 새 이미지 올리기
+        Task{
+            await uploadImage(image: feedImage)
+        }
+        
+        isShowingSheet = false //모달 닫기
+    }
+    
+    func uploadImage(image: UIImage) async {
+        // Feed 이미지 삭제
+        let firebaseReference = Storage.storage().reference().child(FEED_IMAGES + feedUUID)
+        firebaseReference.delete { error in
+            if error != nil {
+            print("삭제 x")
+          } else {
+            print("삭제 o")
+          }
+        }
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.4) else { return }
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        
+        firebaseReference.putData(imageData, metadata: metaData) { metaData, error in
+            Task{
+                try await firebaseReference.downloadURL()
+            }
+        }
     }
 }
 
@@ -110,7 +159,7 @@ struct FeedAddView: View {
 struct FeedAddView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            FeedAddView(isShowingSheet: .constant(true), postStore: PostStore())
+            FeedAddView(isShowingSheet: .constant(true), feedStore: FeedStore())
         }
     }
 }

@@ -1,8 +1,8 @@
 //
 //  ReportView.swift
-//  SubFeed
+//  S_nowManCustomer
 //
-//  Created by dayexx on 2023/08/24.
+//  Created by cha_nyeong on 2023/08/24.
 //
 
 import SwiftUI
@@ -12,7 +12,7 @@ struct ReportView: View {
     var body: some View {
         List(reportReason, id: \.self){ reason in
             NavigationLink {
-                ReportResultView()
+                ReportResultView(reportReason: reason)
             } label: {
                 VStack{
                     Text(reason)
@@ -24,10 +24,12 @@ struct ReportView: View {
     }
 }
 struct ReportResultView: View {
+    var reportReason : String
     var body: some View {
         VStack{
             Image(systemName: "checkmark.circle.fill").foregroundColor(.green).font(.system(size:60)).padding()
             Text("신고 완료!")
+            Text("\(reportReason)").foregroundColor(.gray).font(.system(size: 5))
         }.padding()
             .navigationBarBackButtonHidden(true)
     }

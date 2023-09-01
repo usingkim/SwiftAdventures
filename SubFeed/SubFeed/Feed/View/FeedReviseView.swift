@@ -2,23 +2,25 @@
 //  FeedReviseView.swift
 //  S_nowManCustomer
 //
-//  Created by dayexx on 2023/08/23.
+//  Created by cha_nyeong on 2023/08/24.
 //
 
 import SwiftUI
-import PhotosUI
+
+import FirebaseStorage
+import Firebase
 
 struct FeedReviseView: View {
     
     @Binding var isShowingSheet : Bool
     
-    @State var post : Post
-    @ObservedObject var postStore : PostStore
+    @State var feed : Feed
+    @ObservedObject var feedStore : FeedStore
     
-    @State var postImages: [UIImage] = []
+    @State var feedImage: UIImage = UIImage()
     @State private var newString: String = ""
     @State private var stringArray: [String] = []
-    @State private var userLetterData : String = ""
+    @State private var userContentData : String = ""
     @FocusState private var textFieldFocus: Bool
     
     var body: some View {
@@ -51,17 +53,16 @@ struct FeedReviseView: View {
                 
             }.padding()
                 .onAppear { // 수정뷰일때 여기서 데이터 업데이트 해주면 됨
-                    stringArray.append(post.letter)
+                    stringArray.append(feed.content)
                 }
             
             
             /* 포토뷰 */
-            if postImages.count == 0{
-                imageSelectView(postImages: $postImages)
-            }
-            else {
-                imageScrollView(mode: 1, postImages: $postImages)
-            }
+            // 이 부분 조건 새로 설정해야한다
+            imageScrollView(mode: .revise, id: feed.id, feedImage: $feedImage)
+
+            imageSelectView(feedImage: $feedImage)
+            
             
             
             Spacer()
@@ -79,7 +80,7 @@ struct FeedReviseView: View {
                         newString = ""
                     }
                     
-                    post.image = postImages
+                   //feed.feedImage = postImages
                     
                     isShowingSheet = false //모달 닫기
                     submit()
@@ -98,16 +99,44 @@ struct FeedReviseView: View {
             }
         }
         .onAppear {
-            postImages = post.image
+            //postImages = feed.feedImage
         }
         
     }
     
     func submit() { //userLetterData는 String타입 유저게시물 데이터. 근데 데이터 받아올때도 \n를 기준으로 잘라서 넣어야 수정가능함
-        userLetterData = stringArray.joined(separator: "\n")
-        print(userLetterData)
+        userContentData = stringArray.joined(separator: "\n")
+        print(userContentData)
         // stringArray = userLetterData.components(separatedBy: "\n") -> 반대로 잘라서 넣는 코드
-        postStore.revisePost(post, userLetterData, postImages)
+        feedStore.reviseFeed(feed, userContentData, "duck")
+        
+        // Feed 수정 이미지 올리기
+        Task{
+            await uploadImage(image: feedImage)
+        }
+    }
+    
+    func uploadImage(image: UIImage) async {
+        // Feed 이미지 삭제
+        let firebaseReference = Storage.storage().reference().child(FEED_IMAGES + feed.id)
+        firebaseReference.delete { error in
+            if error != nil {
+            print("삭제 x")
+          } else {
+            print("삭제 o")
+          }
+        }
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.4) else { return }
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        
+        firebaseReference.putData(imageData, metadata: metaData) { metaData, error in
+            Task{
+                try await firebaseReference.downloadURL()
+            }
+        }
     }
 }
 
@@ -115,8 +144,7 @@ struct FeedReviseView: View {
 struct FeedReviseView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            FeedReviseView(isShowingSheet: .constant(true) , post: Post(userName: "오리", userImage: "duck", organization: "멋쟁이사자", image: [], letter: "자고싶다", like: 3), postStore: PostStore())
+            FeedReviseView(isShowingSheet: .constant(true), feed:Feed(uid: "?", username: "오리", feedImage: "duck", content: "앙", like: 0), feedStore: FeedStore())
         }
     }
 }
-

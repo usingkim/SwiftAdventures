@@ -1,18 +1,20 @@
 //
 //  Reply.swift
-//  SubFeed
+//  S_nowManCustomer
 //
-//  Created by dayexx on 2023/08/24.
+//  Created by cha_nyeong on 2023/08/24.
 //
 
 import Foundation
 
-struct Reply: Identifiable {
-   // var id: String = UUID().uuidString
-    var id : UUID = UUID()
+struct Reply: Identifiable, Codable, Hashable {
+    /* MARK: 데이터 구조에 O */
+    var id: String = UUID().uuidString
     var username: String
-    var text: String
+    var content: String
     var createdAt: Double = Date().timeIntervalSince1970
+    
+    /* MARK: Data 구조에 X */
     var imageString : String
     var createdDate: String {
         let dateCreatedAt: Date = Date(timeIntervalSince1970: createdAt)
