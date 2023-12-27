@@ -1,0 +1,37 @@
+[
+    {
+        "id": "p1",
+        "name": "iPad Pro",
+        "price": 1249000.00,
+        "imageURLString": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-model-select-gallery-2-202212?wid=5120&hei=2880&fmt=p-jpg&qlt=95&.v=1667594167534",
+        "shopURLString": "https://www.apple.com/kr/ipad-pro/"
+    },
+    {
+        "id": "p2",
+        "name": "iPad mini",
+        "price": 769000.00,
+        "imageURLString": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-mini-finish-unselect-gallery-1-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=95&.v=1654903896391",
+        "shopURLString": "https://www.apple.com/kr/ipad-mini/"
+    },
+    {
+        "id": "p3",
+        "name": "iPad",
+        "price": 679000.00,
+        "imageURLString": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-10th-gen-finish-unselect-gallery-1-202212?wid=5120&hei=2880&fmt=p-jpg&qlt=95&.v=1667592106064",
+        "shopURLString": "https://www.apple.com/kr/ipad-10.9/"
+    },
+    {
+        "id": "p4",
+        "name": "iPad ",
+        "price": 449000.00,
+        "imageURLString": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-finish-unselect-gallery-1-202207_GEO_KR?wid=5120&hei=2880&fmt=p-jpg&qlt=95&.v=1654902561977",
+        "shopURLString": "https://www.apple.com/kr/ipad-10.2/"
+    },
+    {
+        "id": "p5",
+        "name": "iPad Air",
+        "price": 929000.00,
+        "imageURLString": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-finish-unselect-gallery-1-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=95&.v=1654902977555",
+        "shopURLString": "https://www.apple.com/kr/ipad-air/"
+    }
+]
